@@ -23,6 +23,19 @@
 起動時に利用可能なドライブの空き容量を比較し、空き容量が最も大きいドライブ配下の `video-cut-editor-temp` を一時保存先として自動選択します。環境変数 `TEMP_DIR` を指定した場合は、その保存先を優先します。
 連結リストから動画を削除すると、元ファイルと生成済みのプレビューMP3を含む関連する一時ファイルを削除します。書き出し中は推定残り時間をバーの下に表示します。使用区間は時・分・秒で設定・表示します。
 
+## GitHub Pages / サーバー環境
+
+GitHub Pagesは静的ファイルの配信だけで、FFmpegや動画アップロードAPIを実行できません。リポジトリをGitHub Pagesへ公開した場合でも、実際の編集にはNode.jsサーバーを起動してブラウザーで開く必要があります。
+
+`Dockerfile`を使うと、Node.jsとFFmpegを含むサーバー版をコンテナで起動できます。
+
+```bash
+docker build -t video-cut-editor .
+docker run --rm -p 4173:4173 video-cut-editor
+```
+
+`.github/workflows/deploy-pages.yml`はブラウザー画面だけをGitHub Pagesへ配置する設定です。静的画面では動画処理APIを利用できないため、ローカルまたはコンテナサーバーを併用してください。
+
 ## テスト
 
 `npm test`
