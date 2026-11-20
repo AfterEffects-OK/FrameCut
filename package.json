@@ -1,0 +1,10 @@
+{
+  "name": "local-video-cut-editor",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local web app for cutting video and mixing selected audio tracks",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  }
+}
